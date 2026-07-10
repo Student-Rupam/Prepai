@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://prepai-backend-jfrk.onrender.com",
+    baseURL: "https://prepai-ku2n.onrender.com",
     withCredentials: true,
 })
 
