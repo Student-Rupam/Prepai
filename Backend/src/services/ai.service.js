@@ -35,7 +35,9 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
     const prompt = `Generate an interview report for a candidate with the following details:
     Resume: ${resume}
     Self Description: ${selfDescription}
-    Job Description: ${jobDescription}`
+    Job Description: ${jobDescription}
+    
+    IMPORTANT: The preparationPlan must be a strictly daily, sequential plan where the "day" field increments by 1 for each entry (e.g., Day 1, Day 2, Day 3, Day 4, Day 5, etc.) with absolutely NO gaps.`
 
     // Convert Zod to structural specification using Type/Properties format Gemini natively understands
     const nativeSchema = {
