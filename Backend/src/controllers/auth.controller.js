@@ -13,7 +13,7 @@ async function registerUserController(req, res) {
     const { username, email, password } = req.body
 
     if (!username || !email || !password) {
-        return req.staus(400).json({
+        return res.status(400).json({
             message: "please provide a valid user name"
         })
     }
@@ -21,7 +21,7 @@ async function registerUserController(req, res) {
         $or: [{ username }, { email }]
     })
     if (isUserAlreadyExists) {
-        return req.status(400).json({
+        return res.status(400).json({
             message: "Account already exists with this email address or username"
         })
     }

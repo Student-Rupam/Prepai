@@ -10,11 +10,17 @@ const Login = () => {
 
     const [ email, setEmail ] = useState("")
     const [ password, setPassword ] = useState("")
+    const [ error, setError ] = useState("")
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await handleLogin({email,password})
-        navigate('/app')
+        setError("")
+        const result = await handleLogin({ email, password })
+        if (result?.user) {
+            navigate('/app')
+        } else {
+            setError("Invalid email or password. Please try again.")
+        }
     }
 
     if(loading){
@@ -43,6 +49,7 @@ const Login = () => {
                             onChange={(e) => { setPassword(e.target.value) }}
                             type="password" id="password" name='password' placeholder='Enter your password' required />
                     </div>
+                    {error && <p style={{ color: '#ff6b6b', fontSize: '0.875rem', marginTop: '-0.5rem' }}>{error}</p>}
                     <button className='button primary-button auth-btn' >Log in</button>
                 </form>
                 <div className="auth-footer">
