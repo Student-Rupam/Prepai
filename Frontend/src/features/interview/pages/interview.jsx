@@ -87,6 +87,10 @@ const Interview = () => {
         report.matchScore >= 80 ? 'score--high' :
             report.matchScore >= 60 ? 'score--mid' : 'score--low'
 
+    const matchText = 
+        report.matchScore >= 80 ? 'Strong match for this role' :
+            report.matchScore >= 60 ? 'Moderate match for this role' : 'Weak match for this role'
+
     return (
         <div className='interview-page' style={{ flexDirection: 'column', gap: '2rem' }}>
             {/* Dashboard Navigation */}
@@ -187,7 +191,7 @@ const Interview = () => {
                             <span className='match-score__value'>{report.matchScore}</span>
                             <span className='match-score__pct'>%</span>
                         </div>
-                        <p className='match-score__sub'>Strong match for this role</p>
+                        <p className='match-score__sub'>{matchText}</p>
                     </div>
 
                     <div className='sidebar-divider' />
