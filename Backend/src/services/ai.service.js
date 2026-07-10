@@ -24,7 +24,7 @@ const interviewReportSchema = z.object({
         severity: z.enum([ "low", "medium", "high" ])
     })),
     preparationPlan: z.array(z.object({
-        day: z.number(),
+        day: z.number().describe("The sequential day number (1, 2, 3, 4, etc.) without any gaps between days"),
         focus: z.string(),
         tasks: z.array(z.string())
     })),
@@ -85,7 +85,7 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
                 items: {
                     type: "OBJECT",
                     properties: {
-                        day: { type: "NUMBER" },
+                        day: { type: "NUMBER", description: "The sequential day number (1, 2, 3, 4, etc.) without any gaps between days" },
                         focus: { type: "STRING" },
                         tasks: { type: "ARRAY", items: { type: "STRING" } }
                     },
