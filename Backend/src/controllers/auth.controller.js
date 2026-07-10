@@ -9,23 +9,23 @@ const tokenBlacklistModel = require("../models/blacklist.model")
  * @access Public
  */
 
-async function registerUserController(req,res) {
-    const {username, email, password} = req.body
+async function registerUserController(req, res) {
+    const { username, email, password } = req.body
 
-    if(!username || !email || !password){
+    if (!username || !email || !password) {
         return req.staus(400).json({
             message: "please provide a valid user name"
         })
     }
     const isUserAlreadyExists = await userModel.findOne({
-        $or: [{username}, {email}]
+        $or: [{ username }, { email }]
     })
-    if(isUserAlreadyExists){
+    if (isUserAlreadyExists) {
         return req.status(400).json({
             message: "Account already exists with this email address or username"
         })
     }
-    const hash = await bcrypt.hash(password,10)
+    const hash = await bcrypt.hash(password, 10)
     const user = await userModel.create({
         username,
         email,
